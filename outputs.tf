@@ -32,7 +32,7 @@ output "kubernetes_cluster_extensions_name" {
 }
 output "kubernetes_cluster_extensions_plan" {
   description = "Map of plan values across all kubernetes_cluster_extensions, keyed the same as var.kubernetes_cluster_extensions"
-  value       = { for k, v in azurerm_kubernetes_cluster_extension.kubernetes_cluster_extensions : k => v.plan if v.plan != null && length(v.plan) > 0 }
+  value       = { for k, v in azurerm_kubernetes_cluster_extension.kubernetes_cluster_extensions : k => one(v.plan) if v.plan != null && length(v.plan) > 0 }
 }
 output "kubernetes_cluster_extensions_release_namespace" {
   description = "Map of release_namespace values across all kubernetes_cluster_extensions, keyed the same as var.kubernetes_cluster_extensions"
